@@ -1,6 +1,6 @@
 [project]
 name = "clock-skew-detector"
-version = "0.1.0"
+version = "0.1.1"
 description = "Estimates the clock skew of a remote server by analyzing response timestamps."
 requires-python = ">=3.10"
 dependencies = []
