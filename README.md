@@ -32,3 +32,10 @@ The deliberate trade-off: robustness over precision. We report the median offset
 - `SkewEstimator` — class. Methods: `add_probe(local_send_ms, remote_recv_ms, remote_send_ms)`, `estimate() -> SkewEstimate`.
 - `SkewEstimate` — frozen dataclass with fields `offset_ms`, `rtt_ms`, `n`.
 - `estimate_offset(probes)` — functional shortcut taking an iterable of `(local_send_ms, remote_recv_ms, remote_send_ms)` triples.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
